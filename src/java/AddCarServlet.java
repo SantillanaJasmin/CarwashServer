@@ -64,24 +64,21 @@ public class AddCarServlet extends HttpServlet {
         Connection conn = null;
         PreparedStatement pst = null;
 
-        int res = 20;
-        
         try {
             // Register JDBC driver
             Class.forName("com.mysql.jdbc.Driver");
 
             // Open a Connectiontion
             conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/carwash", "root", "password");
-          
-            
+
             // Execute SQL query
             String sql;
-            sql = "INSERT INTO cars (car_model, car_type, car_plate) VALUES (?, ?, ?)";
+            sql = "INSERT INTO cars(car_model, car_type, car_plate) VALUES (?, ?, ?)";
             pst = conn.prepareStatement(sql);
             pst.setString(1, "Honda");
-            pst.setString(2, "A");
-            pst.setString(3, "ABC 123");
-            res = pst.executeUpdate();
+            pst.setString(2, "C");
+            pst.setString(3, "ABE 296");
+            pst.executeUpdate();
 
             // Clean-up environment
             pst.close();
@@ -92,7 +89,6 @@ public class AddCarServlet extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(AddCarServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        response.getWriter().write("Result: " + res);
     }
 
     /**
@@ -106,14 +102,15 @@ public class AddCarServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-			
-		String model = request.getParameter("model");
-		String type = request.getParameter("type");
-		String plate = request.getParameter("plate");
-		
+        String model = request.getParameter("model");
+        String type = request.getParameter("type");
+        String plate = request.getParameter("plate");
+        
+        System.out.println("Model: " + model + " Type: " + type + "Plate: " + plate);
+
         Connection conn = null;
         PreparedStatement pst = null;
-
+        
         try {
             // Register JDBC driver
             Class.forName("com.mysql.jdbc.Driver");
@@ -128,7 +125,7 @@ public class AddCarServlet extends HttpServlet {
             pst.setString(1, model);
             pst.setString(2, type);
             pst.setString(3, plate);
-            res = pst.executeUpdate();
+            pst.executeUpdate();
 
             // Clean-up environment
             pst.close();
@@ -139,7 +136,6 @@ public class AddCarServlet extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(AddCarServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        response.getWriter().write("Result: " + res);
     }
 
     /**

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -95,11 +96,10 @@ public class GetCarsServlet extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(AddCarServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-//
-//        Gson g = new Gson();
-//        String carJsonString = g.toJson(cars);
-//        response.getWriter().write(carJsonString);
-        response.getWriter().write(cars.toString());
+
+        Gson g = new Gson();
+        String carJsonString = g.toJson(cars);
+        response.getWriter().write(carJsonString);
     }
 
     /**
