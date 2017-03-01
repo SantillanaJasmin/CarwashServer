@@ -73,11 +73,15 @@ public class AddCarServlet extends HttpServlet {
 
             // Execute SQL query
             String sql;
-            sql = "INSERT INTO cars(car_model, car_type, car_plate) VALUES (?, ?, ?)";
+            sql = "INSERT INTO cars(car_model, car_type, car_plate, car_location, loc_lat, loc_longi) VALUES (?, ?, ?, ?, ? ,?)";
             pst = conn.prepareStatement(sql);
-            pst.setString(1, "Honda");
+            pst.setString(1, "Toyota");
             pst.setString(2, "C");
-            pst.setString(3, "ABE 296");
+            pst.setString(3, "ABE 236");
+            pst.setString(4, "Manila");
+            pst.setDouble(5, 124.45);
+            pst.setDouble(6, 23.56);
+            
             pst.executeUpdate();
 
             // Clean-up environment
@@ -105,9 +109,11 @@ public class AddCarServlet extends HttpServlet {
         String model = request.getParameter("model");
         String type = request.getParameter("type");
         String plate = request.getParameter("plate");
+        String location = request.getParameter("location");
         
-        System.out.println("Model: " + model + " Type: " + type + "Plate: " + plate);
-
+        double lati = Double.valueOf(request.getParameter("lati"));
+        double longi = Double.valueOf(request.getParameter("longi"));
+       
         Connection conn = null;
         PreparedStatement pst = null;
         
@@ -120,11 +126,15 @@ public class AddCarServlet extends HttpServlet {
 
             // Execute SQL query
             String sql;
-            sql = "INSERT INTO cars(car_model, car_type, car_plate) VALUES (?, ?, ?)";
+            sql = "INSERT INTO cars(car_model, car_type, car_plate, car_location, loc_lat, loc_longi) VALUES (?, ?, ?, ?, ?, ?)";
             pst = conn.prepareStatement(sql);
             pst.setString(1, model);
             pst.setString(2, type);
             pst.setString(3, plate);
+            pst.setString(4, location);
+            pst.setString(5, String.valueOf(lati));
+            pst.setString(6, String.valueOf(longi));
+            
             pst.executeUpdate();
 
             // Clean-up environment

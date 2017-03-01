@@ -84,7 +84,7 @@ public class GetCarsServlet extends HttpServlet {
             res = pst.executeQuery();
 
             while (res.next()) {
-                cars.add(new Car(res.getString("car_model"), res.getString("car_type"), res.getString("car_plate")));
+                cars.add(new Car(res.getString("car_model"), res.getString("car_type"), res.getString("car_plate"), res.getString("car_location"), res.getDouble("loc_lat"), res.getDouble("loc_longi")));
             }
 
             // Clean-up environment
