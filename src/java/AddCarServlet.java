@@ -61,38 +61,38 @@ public class AddCarServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Connection conn = null;
-        PreparedStatement pst = null;
-
-        try {
-            // Register JDBC driver
-            Class.forName("com.mysql.jdbc.Driver");
-
-            // Open a Connectiontion
-            conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/carwash", "root", "password");
-
-            // Execute SQL query
-            String sql;
-            sql = "INSERT INTO cars(car_model, car_type, car_plate, car_location, loc_lat, loc_longi) VALUES (?, ?, ?, ?, ? ,?)";
-            pst = conn.prepareStatement(sql);
-            pst.setString(1, "Toyota");
-            pst.setString(2, "C");
-            pst.setString(3, "ABE 236");
-            pst.setString(4, "Manila");
-            pst.setDouble(5, 124.45);
-            pst.setDouble(6, 23.56);
-            
-            pst.executeUpdate();
-
-            // Clean-up environment
-            pst.close();
-            conn.close();
-
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AddCarServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(AddCarServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        Connection conn = null;
+//        PreparedStatement pst = null;
+//
+//        try {
+//            // Register JDBC driver
+//            Class.forName("com.mysql.jdbc.Driver");
+//
+//            // Open a Connectiontion
+//            conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/carwash", "root", "password");
+//
+//            // Execute SQL query
+//            String sql;
+//            sql = "INSERT INTO cars(car_model, car_type, car_plate, car_location, loc_lat, loc_longi) VALUES (?, ?, ?, ?, ? ,?)";
+//            pst = conn.prepareStatement(sql);
+//            pst.setString(1, "Toyota");
+//            pst.setString(2, "C");
+//            pst.setString(3, "ABE 236");
+//            pst.setString(4, "Manila");
+//            pst.setDouble(5, 124.45);
+//            pst.setDouble(6, 23.56);
+//            
+//            pst.executeUpdate();
+//
+//            // Clean-up environment
+//            pst.close();
+//            conn.close();
+//
+//        } catch (ClassNotFoundException ex) {
+//            Logger.getLogger(AddCarServlet.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (SQLException ex) {
+//            Logger.getLogger(AddCarServlet.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
 
     /**
@@ -132,8 +132,8 @@ public class AddCarServlet extends HttpServlet {
             pst.setString(2, type);
             pst.setString(3, plate);
             pst.setString(4, location);
-            pst.setString(5, String.valueOf(lati));
-            pst.setString(6, String.valueOf(longi));
+            pst.setDouble(5, lati);
+            pst.setDouble(6, longi);
             
             pst.executeUpdate();
 
