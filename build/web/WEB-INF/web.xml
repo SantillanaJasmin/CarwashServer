@@ -8,6 +8,10 @@
         <servlet-name>GetCarsServlet</servlet-name>
         <servlet-class>GetCarsServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GetHistoryServlet</servlet-name>
+        <servlet-class>GetHistoryServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AddCarServlet</servlet-name>
         <url-pattern>/AddCarServlet</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>GetCarsServlet</servlet-name>
         <url-pattern>/GetCarsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetHistoryServlet</servlet-name>
+        <url-pattern>/GetHistoryServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
